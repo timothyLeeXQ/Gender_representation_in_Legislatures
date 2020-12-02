@@ -18,7 +18,7 @@ sg_map <- geojsonio::geojson_read("https://github.com/yinshanyang/singapore/raw/
 sg_map@data$name <- "Singapore"
 
 #Countries data
-countries_data <- readr::read_csv("API_SG.GEN.PARL.ZS_DS2_en_csv_v2_1740381.csv") %>% 
+countries_data <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/API_SG.GEN.PARL.ZS_DS2_en_csv_v2_1740381.csv") %>% 
   select(.data$`Country Code`,
          .data$`Country Name`,
          paste(1997:2019)
@@ -29,6 +29,14 @@ countries_data <- readr::read_csv("API_SG.GEN.PARL.ZS_DS2_en_csv_v2_1740381.csv"
                       values_to = "proportion") %>%
   mutate(proportion = round(.data$proportion, digits = 2))
 
+
+## Setup - Colouring for maps
+map_bins <- c(0, 10, 20, 30, 40, 50)
+pal <- colorBin("RdYlGn", domain = world_map@data$proportion, bins = map_bins)
+
+  
+
+
 # For slider filtering
 countries_data_select <- countries_data %>% filter(year == "2000")
 
@@ -38,22 +46,26 @@ countries_data_select <- countries_data %>% filter(year == "2000")
 
 
 ```{r}
+#Map Data joining
 world_map@data <- world_map@data %>%
   dplyr::left_join(countries_data_select, by = c("id" = "Country Code")) %>%
   select(-.data$name)
+
+sg_map@data <- sg_map@data %>%
+  dplyr::left_join(countries_data_select, by = c("name" = "Country Name"))
+
 ```
 
 
 ```{r}
-map_bins <- c(0, 10, 20, 30, 40, 50)
-pal <- colorBin("RdYlGn", domain = world_map@data$proportion, bins = map_bins)
+# World Map Leaflet code
+
 world_labels <- sprintf("<strong>%s</strong><br/>%g%%",
                         world_map@data$`Country Name`,
                         world_map@data$proportion) %>%
   lapply(htmltools::HTML)
-  
 
-leaflet_map <- leaflet(options = leafletOptions(minZoom = 2, maxZoom = 3)) %>%
+leaflet_world <- leaflet(options = leafletOptions(minZoom = 2, maxZoom = 3)) %>%
   setView(lat = 0, lng = 60, zoom = 2) %>%
   setMaxBounds(lat1 = 90,
                lat2 = -90,
@@ -83,13 +95,14 @@ leaflet_map <- leaflet(options = leafletOptions(minZoom = 2, maxZoom = 3)) %>%
 
 
 ```{r}
-leaflet_map
+leaflet_world
 ```
 
 
 ```{r}
-sg_map@data <- sg_map@data %>%
-  dplyr::left_join(countries_data_select, by = c("name" = "Country Name"))
+
+# SG Map Leaflet code
+
 sg_labels <- sprintf("<strong>%s</strong><br/>%g%%",
                      sg_map@data$`name`,
                      sg_map@data$proportion) %>%
@@ -102,7 +115,6 @@ leaflet_map_sg <- leaflet(options = leafletOptions(minZoom = 11, maxZoom = 11)) 
                lat2 = 1.476471,
                lng1 = 103.588712,
                lng2 = 104.1) %>%
-  addTiles() %>%
   addPolygons(data = sg_map, stroke = TRUE, smoothFactor = 0.5,
               weight = 1, color = '#333333', opacity = 1, 
               fillColor = ~pal(proportion), 
@@ -117,6 +129,8 @@ leaflet_map_sg <- leaflet(options = leafletOptions(minZoom = 11, maxZoom = 11)) 
                 textsize = "15px",
                 direction = "auto")
               )
+
+leaflet::renderLeaflet()
 ```
 
 
@@ -127,6 +141,9 @@ leaflet_map_sg
 
 
 
+```{r}
+
+```
 
 
 
