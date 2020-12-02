@@ -1,0 +1,144 @@
+---
+title: "pilot"
+author: "Timothy Lee"
+date: "28/11/2020"
+output: html_document
+---
+
+```{r}
+library(leaflet)
+library(geojsonio)
+library(dplyr)
+```
+
+```{r}
+# Map data
+world_map <- geojsonio::geojson_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", what = "sp")
+sg_map <- geojsonio::geojson_read("https://github.com/yinshanyang/singapore/raw/master/maps/0-country.geojson", what = "sp")
+sg_map@data$name <- "Singapore"
+
+#Countries data
+countries_data <- readr::read_csv("seatsByWomen.csv") %>% 
+  select(.data$`Country Code`,
+         .data$`Country Name`,
+         paste(1997:2019)
+         ) %>%
+  tidyr::pivot_longer(.data,
+                      cols = paste(1997:2019),
+                      names_to = "year",
+                      values_to = "proportion")
+
+# For slider filtering
+countries_data_select <- countries_data %>% filter(year == "2000")
+
+
+
+```
+
+
+```{r}
+world_map@data <- world_map@data %>%
+  dplyr::left_join(countries_data_select, by = c("id" = "Country Code")) %>%
+  select(-.data$name)
+```
+
+
+```{r}
+bins <- c(0, 10, 20, 30, 40, 50)
+pal <- colorBin("RdYlGn", domain = world_map@data$proportion, bins = bins)
+labels <- sprintf("<strong>%s</strong><br/>%g%%",
+                  world_map@data$`Country Name`,
+                  world_map@data$proportion) %>%
+  lapply(htmltools::HTML)
+  
+
+leaflet_map <- leaflet(options = leafletOptions(minZoom = 2, maxZoom = 3)) %>%
+  setView(lat = 0, lng = 60, zoom = 2) %>%
+  setMaxBounds(lat1 = 90,
+               lat2 = -90,
+               lng1 = -179.739113,
+               lng2 = 179.739113) %>%
+  addTiles() %>%
+  addPolygons(data = world_map, stroke = TRUE, smoothFactor = 0.5,
+              weight = 1, color = '#333333', opacity = 1, 
+              fillColor = ~pal(proportion), 
+              fillOpacity = 1,
+              highlightOptions = highlightOptions(color = '#000000',
+                                                  weight = 3,
+                                                  bringToFront = TRUE,
+                                                  sendToBack = TRUE),
+              label = labels,
+              labelOptions = labelOptions(
+                style = list("font-weight" = "normal", padding = "3px 8px"),
+                textsize = "15px",
+                direction = "auto")
+              ) %>%
+  addLegend("bottomright",
+            pal = pal,
+            values = world_map@data$proportion,
+            opacity = 1,
+            title = htmltools::HTML("% Women<br>in Legislature"))
+```
+
+
+```{r}
+leaflet_map
+```
+
+
+```{r}
+sg_map@data <- sg_map@data %>%
+  dplyr::left_join(countries_data_select, by = c("name" = "Country Name"))
+sg_labels <- sprintf("<strong>%s</strong><br/>%g%%",
+                     sg_map@data$`name`,
+                     sg_map@data$proportion) %>%
+  lapply(htmltools::HTML)
+
+
+leaflet_map_sg <- leaflet(options = leafletOptions(minZoom = 11, maxZoom = 11)) %>%
+  setView(lat = 1.352754, lng = 103.866692, zoom = 11) %>%
+  setMaxBounds(lat1 = 1.157170,
+               lat2 = 1.476471,
+               lng1 = 103.588712,
+               lng2 = 104.1) %>%
+  addTiles() %>%
+  addPolygons(data = sg_map, stroke = TRUE, smoothFactor = 0.5,
+              weight = 1, color = '#333333', opacity = 1, 
+              fillColor = ~pal(proportion), 
+              fillOpacity = 1,
+              highlightOptions = highlightOptions(color = '#000000',
+                                                  weight = 3,
+                                                  bringToFront = TRUE,
+                                                  sendToBack = TRUE),
+              label = sg_labels,
+              labelOptions = labelOptions(
+                style = list("font-weight" = "normal", padding = "3px 8px"),
+                textsize = "15px",
+                direction = "auto")
+              )
+```
+
+
+
+```{r}
+leaflet_map_sg
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
