@@ -1,4 +1,5 @@
 ﻿Country_Territory,Name ,Position,img_url
+Singapore,Halimah Yacob,President of Singapore,https://upload.wikimedia.org/wikipedia/commons/b/bd/Republic_of_Singapore_President_Halimah_Yacob_witnesses_the_program_proper_during_her_visit_to_the_Philippine_Eagle_Center_in_Davao_City_on_September_11%2C_2019_%28cropped%29.jpg
 Singapore,Indranee Rajah ,Minister in the Prime Minister Office,https://upload.wikimedia.org/wikipedia/commons/7/7b/Indranee_Rajah_speaking_at_SMU_SOL_commencement_ceremony_2018_%28cropped%29.jpg
 Singapore,Grace Foo,Minister of Sustainability and the Environment,https://upload.wikimedia.org/wikipedia/commons/1/14/GraceFu-2010SummerYouthOlympics-20090426-02.jpg
 Singapore,Josephine Teo,Minister of Manpower,https://upload.wikimedia.org/wikipedia/commons/b/bd/Josephine_Teo_September_2016_%2829908295102%29.jpg
@@ -32,9 +33,9 @@ Philippines,Leonor Magnolias Briones,Secretary of Education,https://upload.wikim
 India,Smriti Irani ,Minister of Textiles and Minister of Women and Child Development,https://upload.wikimedia.org/wikipedia/commons/c/c3/The_Union_Minister_for_Textiles_and_Information_%26_Broadcasting%2C_Smt._Smriti_Irani_interacting_with_the_media_regarding_the_cabinet_approval_for_the_Integrated_Scheme_for_Development_of_Silk_Industry%2C_in_New_Delhi_%281%29.jpg
 India,Nirmala Sitharaman ,Minister of Finance and Corporate Affairs,https://upload.wikimedia.org/wikipedia/commons/c/c0/The_Minister_of_State_for_Commerce_%26_Industry_%28Independent_Charge%29%2C_Smt._Nirmala_Sitharaman_addressing_a_press_conference%2C_in_New_Delhi_on_October_14%2C_2016.jpg
 India,Harsimrat Kaur Badal ,Minister of Food Processing Industry,https://upload.wikimedia.org/wikipedia/commons/d/db/Harsimrat_Kaur_Badal.jpg
-UK,Priti Patel,Home Secretary,https://upload.wikimedia.org/wikipedia/commons/e/e0/Official_portrait_of_Rt_Hon_Priti_Patel_MP_crop_2.jpg
-UK,Liz Truss,International Trade Secretary,https://upload.wikimedia.org/wikipedia/commons/c/c8/Official_portrait_of_Elizabeth_Truss_crop_2.jpg
-UK,Thérèse Anne Coffey,Secretary for Work and Pensions,https://upload.wikimedia.org/wikipedia/commons/c/ca/CsHBoP4f.jpg
+United Kingdom,Priti Patel,Home Secretary,https://upload.wikimedia.org/wikipedia/commons/e/e0/Official_portrait_of_Rt_Hon_Priti_Patel_MP_crop_2.jpg
+United Kingdom,Liz Truss,International Trade Secretary,https://upload.wikimedia.org/wikipedia/commons/c/c8/Official_portrait_of_Elizabeth_Truss_crop_2.jpg
+United Kingdom,Thérèse Anne Coffey,Secretary for Work and Pensions,https://upload.wikimedia.org/wikipedia/commons/c/ca/CsHBoP4f.jpg
 France,Florence Parly,Minister of Armed Forces,https://upload.wikimedia.org/wikipedia/commons/d/d2/%28Florence_Parly%29_190907-D-BN624-0170_%2848694393657%29_%28cropped%29.jpg
 France,Élisabeth Moreno,"Minister Delegate for Gender Equality,
 Diversity and Equal Opportunities",https://upload.wikimedia.org/wikipedia/commons/3/3d/%C3%89lisabeth_Moreno_250720.jpg
@@ -45,12 +46,12 @@ Germany,Christine Lambrecht ,Minister of Justice and Consumer Protection,https:
 Canada,Chrystia Freeland,"Deputy Prime Minister, Minister of Finance",https://upload.wikimedia.org/wikipedia/commons/1/18/Chrystia_Freeland_MSC_2018_%28cropped%29.jpg
 Canada,Melanie Joly,Minister of Economic Development and Official Languages,https://upload.wikimedia.org/wikipedia/commons/2/2a/M%C3%A9lanie_Joly%2C_2019-10-03_version_02.jpg
 Canada,Maryam Monsef,Minister for Women and Gender Equality,https://upload.wikimedia.org/wikipedia/commons/2/21/The_Honourable_Maryam_Monsef.jpg
-US,Kamala Harris,Vice President Elect,https://upload.wikimedia.org/wikipedia/commons/d/d9/Kamala_Harris_official_photo_%28cropped2%29.jpg
-US,Nancy Pelosi,Speaker of House,https://upload.wikimedia.org/wikipedia/commons/a/a5/Official_photo_of_Speaker_Nancy_Pelosi_in_2019.jpg
-US,Liz Cheney,House Republican Conference Chair,https://upload.wikimedia.org/wikipedia/commons/9/9a/Liz_Cheney_official_116th_Congress_portrait.jpg
-New Zeland,Jacinda Arden ,Prime Minister,https://upload.wikimedia.org/wikipedia/commons/b/b6/New_Zealand_Prime_Minister_Jacinda_Ardern_in_2018.jpg
-New Zeland,Nanaia Mahuta,Minister of Foreign Affairs,https://upload.wikimedia.org/wikipedia/commons/3/3d/Hon_Nanaia_Mahuta.jpg
-New Zeland,Jan Tinetti,Minister for Internal Affairs,https://upload.wikimedia.org/wikipedia/commons/7/7e/Jan_Tinetti.jpg
+United States,Kamala Harris,Vice President Elect,https://upload.wikimedia.org/wikipedia/commons/d/d9/Kamala_Harris_official_photo_%28cropped2%29.jpg
+United States,Nancy Pelosi,Speaker of House,https://upload.wikimedia.org/wikipedia/commons/a/a5/Official_photo_of_Speaker_Nancy_Pelosi_in_2019.jpg
+United States,Liz Cheney,House Republican Conference Chair,https://upload.wikimedia.org/wikipedia/commons/9/9a/Liz_Cheney_official_116th_Congress_portrait.jpg
+New Zealand,Jacinda Arden ,Prime Minister,https://upload.wikimedia.org/wikipedia/commons/b/b6/New_Zealand_Prime_Minister_Jacinda_Ardern_in_2018.jpg
+New Zealand,Nanaia Mahuta,Minister of Foreign Affairs,https://upload.wikimedia.org/wikipedia/commons/3/3d/Hon_Nanaia_Mahuta.jpg
+New Zealand,Jan Tinetti,Minister for Internal Affairs,https://upload.wikimedia.org/wikipedia/commons/7/7e/Jan_Tinetti.jpg
 United Arab Emirates,Reem Al Hashimi,Minister of State for International Cooperation,https://upload.wikimedia.org/wikipedia/commons/e/ef/Reem_Al_Hashimi_%2814218022328%29_%28cropped%29.jpg
 United Arab Emirates,HE Hessa Buhumaid,Minister of Community Development,https://emirateswoman.com/wp-content/uploads/2017/11/hessa.jpg
 United Arab Emirates,HE Noura Al Kaabi,Minister for Culture and Knowledge Development,https://en.wikipedia.org/wiki/Noura_Al_Kaabi#/media/File:Noura_Al_Kaabi.jpg
