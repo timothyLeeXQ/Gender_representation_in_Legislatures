@@ -17,7 +17,6 @@ countries_dropdown <- c("Singapore",
                         "Indonesia",
                         "Thailand",
                         "Philippines",
-                        "Vietnam",
                         "Japan",
                         "South Korea",
                         "China",
@@ -357,7 +356,7 @@ body <- dashboardBody(
                          <p class ='aligncenter'>
                          <img src = 'https://i.ibb.co/RvB29VW/53303451-2699929093357376-3238077502035329024-n.jpg'>
                          <br>
-                         <em>Insert caption</em>
+                         <em>Singapore's Female MPs in 2019. (PHOTO: Indranee Rajah's Facebook Page)</em>
                          </p>
                          <br>
                          <br>
@@ -454,32 +453,36 @@ body <- dashboardBody(
         tabItem(
             tabName = "explore",
             fluidRow(
-                box(width = 8,
+                HTML("<h1>&nbsp;&nbsp;&nbsp;Explore</h1>"),
+                box(width = 10,
                     title = "Female Lawmakers Around the World",
                     sliderInput(
                         inputId = "year_select",
                         label = "Select a Year",
                         min = 1997,
                         max = 2019,
-                        value = 2019,
+                        value = 1997,
                         step = 1,
                         round = TRUE,
                         sep = "",
-                        width = "300px"
-                    )
-                ),
-                box(width = 4,
+                        width = "600px"),
+                    leaflet::leafletOutput("leaflet_sg_map", width = "20%", height = 50),
+                    leaflet::leafletOutput("leaflet_world_map", height = 600),
+                    ),
+                box(width = 2,
                     title = "Women in Key Positions",
                     selectInput(inputId = "country_select_1",
                                 label = "Country:",
                                 choices = countries_dropdown,
                                 selected = "Singapore", multiple = FALSE,
-                                selectize = TRUE, width = NULL, size = NULL)
+                                selectize = TRUE, width = NULL, size = NULL),
+                    htmlOutput("women_power")
+                    )
                 )
             )
-        )
     )
 )
+
 
 
 ui <- dashboardPage(header, sidebar, body)
