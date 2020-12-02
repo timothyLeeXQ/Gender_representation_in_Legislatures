@@ -18,7 +18,7 @@ sg_map <- geojsonio::geojson_read("https://github.com/yinshanyang/singapore/raw/
 sg_map@data$name <- "Singapore"
 
 #Countries data
-countries_data <- readr::read_csv("seatsByWomen.csv") %>% 
+countries_data <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/seatsByWomen.csv") %>% 
   select(.data$`Country Code`,
          .data$`Country Name`,
          paste(1997:2019)
@@ -44,11 +44,11 @@ world_map@data <- world_map@data %>%
 
 
 ```{r}
-bins <- c(0, 10, 20, 30, 40, 50)
-pal <- colorBin("RdYlGn", domain = world_map@data$proportion, bins = bins)
-labels <- sprintf("<strong>%s</strong><br/>%g%%",
-                  world_map@data$`Country Name`,
-                  world_map@data$proportion) %>%
+map_bins <- c(0, 10, 20, 30, 40, 50)
+pal <- colorBin("RdYlGn", domain = world_map@data$proportion, bins = map_bins)
+world_labels <- sprintf("<strong>%s</strong><br/>%g%%",
+                        world_map@data$`Country Name`,
+                        world_map@data$proportion) %>%
   lapply(htmltools::HTML)
   
 
@@ -58,7 +58,7 @@ leaflet_map <- leaflet(options = leafletOptions(minZoom = 2, maxZoom = 3)) %>%
                lat2 = -90,
                lng1 = -179.739113,
                lng2 = 179.739113) %>%
-  addTiles() %>%
+  addTiles(attribution = "<a href = 'https://data.worldbank.org/indicator/SG.GEN.PARL.ZS'>Data from the World Bank</a>") %>%
   addPolygons(data = world_map, stroke = TRUE, smoothFactor = 0.5,
               weight = 1, color = '#333333', opacity = 1, 
               fillColor = ~pal(proportion), 
@@ -67,7 +67,7 @@ leaflet_map <- leaflet(options = leafletOptions(minZoom = 2, maxZoom = 3)) %>%
                                                   weight = 3,
                                                   bringToFront = TRUE,
                                                   sendToBack = TRUE),
-              label = labels,
+              label = world_labels,
               labelOptions = labelOptions(
                 style = list("font-weight" = "normal", padding = "3px 8px"),
                 textsize = "15px",
