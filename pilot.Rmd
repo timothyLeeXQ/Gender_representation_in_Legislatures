@@ -11,14 +11,14 @@ library(geojsonio)
 library(dplyr)
 ```
 
-```{r}
+```{r echo=FALSE, message=FALSE}
 # Map data
 world_map <- geojsonio::geojson_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", what = "sp")
 sg_map <- geojsonio::geojson_read("https://github.com/yinshanyang/singapore/raw/master/maps/0-country.geojson", what = "sp")
 sg_map@data$name <- "Singapore"
 
 #Countries data
-countries_data <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/seatsByWomen.csv") %>% 
+countries_data <- readr::read_csv("API_SG.GEN.PARL.ZS_DS2_en_csv_v2_1740381.csv") %>% 
   select(.data$`Country Code`,
          .data$`Country Name`,
          paste(1997:2019)
@@ -26,7 +26,8 @@ countries_data <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_repres
   tidyr::pivot_longer(.data,
                       cols = paste(1997:2019),
                       names_to = "year",
-                      values_to = "proportion")
+                      values_to = "proportion") %>%
+  mutate(proportion = round(.data$proportion, digits = 2))
 
 # For slider filtering
 countries_data_select <- countries_data %>% filter(year == "2000")
