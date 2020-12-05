@@ -175,7 +175,8 @@ ggplot(SG_Parl_women, aes(x = .data$Year, y = .data$proportion, .data$position, 
   annotate("text", x = 2009, y = .33, label = "UN 30% Guideline", hjust = 0) +
   labs(x = "\nYear",
        y = "Proportion of Women\n",
-       col = "% Females as...") +
+       col = "% Females as...",
+       caption = "Data from the World Bank, Parliament.gov.sg") +
   theme_minimal() +
   theme(axis.title.x = element_text(size = 14, family = "TT Arial"),
         axis.title.y = element_text(size = 14, family = "TT Arial"),

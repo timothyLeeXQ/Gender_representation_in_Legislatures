@@ -515,7 +515,7 @@ body <- dashboardBody(
                                 selected = "Singapore", multiple = FALSE,
                                 selectize = TRUE, width = NULL, size = NULL),
                     htmlOutput("women_power"),
-                    HTML("<p style='font-size:10px;'>(PHOTOS: WIKIPEDIA, FACEBOOK)</p>")
+                    HTML("<p style='font-size:10px;'>(PHOTOS: WIKIPEDIA, FACEBOOK, VARIOUS LEGISLATURE WEBSITES)</p>")
                     )
                 )
             )
