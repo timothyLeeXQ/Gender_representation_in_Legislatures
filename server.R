@@ -7,61 +7,13 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
-library(shinydashboard)
-library(dplyr)
-library(tidyr)
-library(highcharter)
-library(leaflet)
 
-# Setup - Data for Maps
-world_map <- geojsonio::geojson_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", what = "sp")
-sg_map <- geojsonio::geojson_read("https://github.com/yinshanyang/singapore/raw/master/maps/0-country.geojson", what = "sp")
-sg_map@data$name <- "Singapore"
 
-## Setup - Colouring for maps
-map_bins <- c(0, 10, 20, 30, 40, 50)
-pal <- colorBin("RdYlGn", domain = world_map@data$proportion, bins = map_bins)
 
-# Countries data setup
-countries_data <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/API_SG.GEN.PARL.ZS_DS2_en_csv_v2_1740381.csv") %>%
-  select(.data$`Country Code`,
-         .data$`Country Name`,
-         paste(1997:2019)
-         ) %>%
-  tidyr::pivot_longer(.data,
-                      cols = paste(1997:2019),
-                      names_to = "year",
-                      values_to = "proportion") %>%
-  mutate(proportion = round(.data$proportion, digits = 2))
-
-# Setup - World Map
-leaflet_world <- leaflet(options = leafletOptions(minZoom = 2, maxZoom = 3)) %>%
-  setMaxBounds(lat1 = 90,
-               lat2 = -90,
-               lng1 = -179.739113,
-               lng2 = 179.739113) %>%
-  addTiles(attribution = "<a href = 'https://data.worldbank.org/indicator/SG.GEN.PARL.ZS'>Data from the World Bank</a>")
-
-# Setup - SG Map
-leaflet_sg <- leaflet(options = leafletOptions(minZoom = 8, maxZoom = 8)) %>%
-  setView(lat = 1.352754, lng = 103.866692, zoom = 8) %>%
-  setMaxBounds(lat1 = 1.157170,
-               lat2 = 1.476471,
-               lng1 = 103.588712,
-               lng2 = 104.1)
-
-# Setup - Women in power dataset
-pol_list <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/Women%20Politicians.csv")
 
 # Define server logic
 shinyServer(function(input, output, session) {
   # Map year filter
-  output$countries_data_select <- reactive({
-
-    countries_data_select
-  })
-
     output$leaflet_world_map <- leaflet::renderLeaflet({
       year_chosen <- paste(input$year_select)
       countries_data_select <- countries_data %>% filter(year == year_chosen)
@@ -92,7 +44,7 @@ shinyServer(function(input, output, session) {
                   textsize = "15px",
                   direction = "auto")
                 ) %>%
-          addLegend("bottomright",
+          addLegend("topleft",
               pal = pal,
               values = world_map@data$proportion,
               opacity = 1,
@@ -139,7 +91,11 @@ shinyServer(function(input, output, session) {
       country_pol_list <- pol_list %>%
         filter(Country_Territory == selected_country)
 
-      the_html <- paste0("<img src ='",
+      the_html <- paste0("<style>
+                          .aligncenter {text-align: center;}
+                          </style>
+                         <p class = 'aligncenter'>",
+                         "<img src ='",
                          country_pol_list$img_url,
                          "' style='width: 90px;height: 120px;'>",
                          "<br>",
@@ -148,9 +104,63 @@ shinyServer(function(input, output, session) {
                          "</strong>",
                          "<br>",
                          country_pol_list$Position,
+                         "</p>",
                          collapse = "<br><br>")
       women_power <- htmltools::HTML(the_html)
       women_power
+    })
+    
+    output$women_legis_table <- renderDataTable({
+      year_chosen <- paste(input$year_select)
+      countries_data_select <- countries_data %>%
+        filter(year == year_chosen) %>%
+        select(-.data$year,
+               -.data$`Country Code`,
+               ) %>%
+        rename(`% Women in Legislature` = proportion) %>%
+        arrange(desc(.data$`% Women in Legislature`)) %>%
+        mutate(`% Women in Legislature` = paste(.data$`% Women in Legislature`, "%", sep = "")) %>%
+        mutate(`% Women in Legislature` = str_replace(.data$`% Women in Legislature`,
+                                                      pattern = fixed("NA%"),
+                                                      replacement = "Data not Available"))
+      women_legis_table <- datatable(countries_data_select,
+                                     class = "compact, stripe",
+                                     options = list(pageLength = nrow(countries_data_select),
+                                                    scrollX = TRUE,
+                                                    scrollY = 400,
+                                                    fixedHeader = TRUE,
+                                                    bPaginate = FALSE))
+      
+      women_legis_table
+    })
+    
+    output$countries_line_graph <- renderPlot({
+      selected_countries <- paste0(input$country_select_2, collapse = "|")
+      
+      countries_line_graph <- countries_data %>%
+        filter(str_detect(.data$`Country Code`, pattern = regex(selected_countries))) %>%
+        ggplot(aes(x = .data$year,
+                   y = .data$proportion,
+                   group = .data$`Country Name`,
+                   col = .data$`Country Name`)) +
+        geom_line(size = 1) +
+        scale_y_continuous(breaks = c(0, 10, 20, 30, 40, 50, 60),
+                           limits = c(0, 60)) +
+        geom_hline(yintercept = 50, linetype = "dashed", size = 1) +
+        geom_hline(yintercept = 30, linetype = "dashed", size = 1) +
+        annotate("text", x = "1997", y = 53, label = "Parity", hjust = 0) +
+        annotate("text", x = "1997", y = 33, label = "UN 30% Guideline", hjust = 0) +
+        labs(x = "\nYear",
+             y = "Proportion of Women in the Legislature\n",
+             col = "Country",
+             caption = "Note: Breaks in lines indicate missing data") +
+        theme_minimal() +
+        theme(axis.title.x = element_text(size = 14, family = "Arial"),
+              axis.title.y = element_text(size = 14, family = "Arial"),
+              axis.text = element_text(size = 12, family = "Arial"),
+              axis.text.x = element_text(angle = 45, hjust = 1))
+      
+      countries_line_graph
     })
 
 })

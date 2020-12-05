@@ -7,10 +7,26 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
-library(shinydashboard)
-library(shinyWidgets)
-library(highcharter)
+# Selector creation
+countries_dropdown_line_graph <- c("Singapore" = "SGP",
+                                   "Malaysia" = "MYS",
+                                   "Indonesia" = "IDN",
+                                   "Thailand" = "THA",
+                                   "Philippines" = "PHL",
+                                   "Japan" = "JPN",
+                                   "South Korea" = "KOR",
+                                   "China" = "CHN",
+                                   "India" = "IND",
+                                   "Australia" = "AUS",
+                                   "New Zealand" = "NZL",
+                                   "United Arab Emirates" = "ARE",
+                                   "United Kingdom" = "GBR",
+                                   "France" = "FRA",
+                                   "Germany" = "DEU",
+                                   "United States" = "USA",
+                                   "Canada" = "CAN",
+                                   "Global" = "WLD")
+
 
 countries_dropdown <- c("Singapore",
                         "Malaysia",
@@ -37,9 +53,9 @@ header <- dashboardHeader(title = "ST Test Submission")
 
 sidebar <- dashboardSidebar(
     sidebarMenu(
-        menuItem("Submission Details", tabName = "sub_details", icon = icon("file-alt")),
         menuItem("Interactive Tool", tabName = "explore", icon = icon("mouse-pointer")),
-        menuItem("Main Story", tabName = "story", icon = icon("newspaper"))
+        menuItem("Main Story", tabName = "story", icon = icon("newspaper")),
+        menuItem("Submission Details", tabName = "sub_details", icon = icon("file-alt"))
     )
 )
 
@@ -453,30 +469,53 @@ body <- dashboardBody(
         tabItem(
             tabName = "explore",
             fluidRow(
-                HTML("<h1>&nbsp;&nbsp;&nbsp;Explore</h1>"),
+                HTML("<style>.aligncenter {text-align: center;}</style>
+                     <h2><p class = 'aligncenter'>Explore Female Representation Over the Years</p></h2>"),
                 box(width = 10,
-                    title = "Female Lawmakers Around the World",
+                    title = "Select a Year",
                     sliderInput(
                         inputId = "year_select",
-                        label = "Select a Year",
+                        label = NULL,
                         min = 1997,
-                        max = 2019,
+                        max = 2020,
                         value = 1997,
                         step = 1,
+                        ticks = FALSE,
+                        width = "100%",
                         round = TRUE,
-                        sep = "",
-                        width = "600px"),
-                    leaflet::leafletOutput("leaflet_sg_map", width = "20%", height = 50),
+                        sep = ""),
+                    HTML("<h3>In the Legislatures of...</h3>"),
+                    HTML("<h3>Singapore</h3>"),
+                    leaflet::leafletOutput("leaflet_sg_map", width = 160, height = 70),
+                    HTML("<h3>And the World</h3>"),
                     leaflet::leafletOutput("leaflet_world_map", height = 600),
+                    HTML("<br><br>"),
+                    box(width = 4,
+                        title = "Ranking of Female Legislative Representation by Country",
+                        DT::dataTableOutput("women_legis_table"),
+                        HTML("<p style='font-size:10px;'>Data from the World Bank</p>")
+                        ),
+                    box(width = 8,
+                        title = "Trends in Female Representation in Regional and Global Powers",
+                        pickerInput(
+                            inputId = "country_select_2",
+                            label = "Click bar to select Countries for Comparison:", 
+                            choices = countries_dropdown_line_graph,
+                            options = list(`actions-box` = TRUE, size = 5), 
+                            multiple = TRUE),
+                        plotOutput("countries_line_graph"),
+                        HTML("<p style='font-size:10px;'>Data from the World Bank</p>")
+                        )
                     ),
                 box(width = 2,
-                    title = "Women in Key Positions",
+                    title = "In Key Positions in Regional and Global Powers",
                     selectInput(inputId = "country_select_1",
                                 label = "Country:",
                                 choices = countries_dropdown,
                                 selected = "Singapore", multiple = FALSE,
                                 selectize = TRUE, width = NULL, size = NULL),
-                    htmlOutput("women_power")
+                    htmlOutput("women_power"),
+                    HTML("<p style='font-size:10px;'>(PHOTOS: WIKIPEDIA, FACEBOOK)</p>")
                     )
                 )
             )
