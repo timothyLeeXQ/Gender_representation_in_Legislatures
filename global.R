@@ -8,8 +8,7 @@ library(ggplot2)
 library(highcharter)
 library(leaflet)
 library(DT)
-library('Cairo')
-Cairo::CairoWin()
+
 
 # Setup - Data for Maps
 world_map <- geojsonio::geojson_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", what = "sp")
@@ -31,6 +30,8 @@ countries_data <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_repres
                       names_to = "year",
                       values_to = "proportion") %>%
   mutate(proportion = round(.data$proportion, digits = 2))
+
+countries_data$year <- as.numeric(countries_data$year)
 
 # Setup - World Map
 leaflet_world <- leaflet(options = leafletOptions(minZoom = 2,
@@ -57,3 +58,9 @@ leaflet_sg <- leaflet(options = leafletOptions(minZoom = 8,
 
 # Setup - Women in power dataset
 pol_list <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/Women%20Politicians.csv")
+
+# Setup - SG Parliament Dataset
+SG_Parl_women <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/SG_Parl_women.csv") %>%
+  pivot_longer(cols = -.data$Year,
+               names_to = "position",
+               values_to = "proportion")

@@ -154,7 +154,7 @@ ggplot(aes(x = year, y = proportion, group = `Country Name`, col = `Country Name
 
 
 ```{r message = FALSE}
-SG_Parl_women <- readr::read_csv("SG_Parl_women.csv") %>%
+SG_Parl_women <- readr::read_csv("https://github.com/timothyLeeXQ/Gender_representation_in_Legislatures/raw/main/SG_Parl_women.csv") %>%
   pivot_longer(cols = -.data$Year,
                names_to = "position",
                values_to = "proportion")

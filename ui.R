@@ -25,6 +25,8 @@ countries_dropdown_line_graph <- c("Singapore" = "SGP",
                                    "Germany" = "DEU",
                                    "United States" = "USA",
                                    "Canada" = "CAN",
+                                   "OECD Members" = "OED",
+                                   "East Asia and Pacific" = "EAS",
                                    "Global" = "WLD")
 
 
@@ -167,26 +169,25 @@ body <- dashboardBody(
                     more of a summary of what the reader is going to get and entice
                     clicks, rather than expand on the headline.</p>
                     <br>
-                    <br>
                     <p>Here is my idea for Decks for the:</p>
                     <br>
                     <ul>
                         <li><strong>Main story: </strong><br>
-                        <h2>More Women in Parliament Over the Years</h2>
+                        <h2>Growing Number of Women in Singapore Politics</h2>
                         <p>
                         Female representation in Singapore's political
-                        sphere is increasing, but men still dominate <br>
-                        in key positions. We track the progress so far in
-                        closing the political gender gap, and ask why and <br>
-                        what more can be done.
+                        sphere is increasing, but men still dominate. <br>
+                        We track the progress so far in closing the 
+                        political gender gap, investigate its causes,<br>
+                        and ask what more should be done.
                         </p>
                         </li>
                         <li><strong>Interactive Tool: </strong><br>
-                        <h2> Explore: Women in Power Across the World</h2>
+                        <h2>Explore Female Representation Over the Years</h2>
                         <p>
-                        Explore the Political Gender Gap in Singapore and
-                        the rest of the world and learn about women <br>
-                        in key political positions in the region.
+                        Use interactive tools to learn about trends
+                        in female political representation and key women<br>
+                        in politics in the region and the globe.
                         </p>
                         </li>
                     </ul>
@@ -360,64 +361,119 @@ body <- dashboardBody(
             tabName = "story",
             fluidRow(
                 box(width = 6,
-                    title = "",
+                    title = NULL,
                     HTML("<style>
                           .aligncenter {text-align: center;}
                           </style>
-                         <h2>More Women in Parliament Over the Years</h2>
-                         <h4>But still room for progress as key positions
-                         remain dominated by men</h4>
+                         <h2>Growing Number of Women in Singapore Politics</h2>
+                         <h4>Clear growth in female representation in Parliament,
+                         but politics remains dominated by men</h4>
                          <br>
                          <br>
                          <p class ='aligncenter'>
-                         <img src = 'https://i.ibb.co/RvB29VW/53303451-2699929093357376-3238077502035329024-n.jpg'>
+                         <img style='height: 80%; width: 80%; object-fit: contain' src = 'https://i.ibb.co/RvB29VW/53303451-2699929093357376-3238077502035329024-n.jpg'>
                          <br>
                          <em>Singapore's Female MPs in 2019. (PHOTO: Indranee Rajah's Facebook Page)</em>
                          </p>
                          <br>
                          <br>
                          <p>In recent years, women have become increasingly
-                         present in Singapore's public sphere. From GE2015 till
-                         today, Singapore elected its first female head of
-                         state, appointed 9 women as political officeholders,
-                         and increased the share of women in Parliament in
-                         GE2020.
+                         present in Singapore's public sphere. In the last 5 years,
+                         Singapore elected its first female head of state, 
+                         increased the share of women in Parliament, and 
+                         now has
+                         <a href = 'https://www.straitstimes.com/politics/nine-out-of-37-political-office-holders-are-women'>
+                         9 female MPs as political officeholders.
+                         </a>
+                         This is a sharp contrast to the 
+                         <a href = 'https://www.womensaction.sg/article/politics'>
+                         complete absence of female Parliamentary representation 
+                         in 1970-1984. </a>
+                         </p>
+                         <p>
+                         Much of this gain has been made in the most recent 
+                         general election.
                          <a href = 'https://www.channelnewsasia.com/news/singapore/ge2020-record-number-women-parliament-mps-singapore-12940394'>
-                         There are now 27 female elected members of
-                         Parliament, about 29% of seats, compared to 21 out of
-                         89 seats (23.5%) in the previous session of Parliament
-                         in 2015.</a> This is a sharp contrast to the complete
-                         absence of female representation in 1970-1984.
+                         In the 14th Parliament formed after GE2020, there are 
+                         27 female elected MPs, about 29% of seats, 
+                         up from 23.5% (21 out of 89) in the previous session of
+                         Parliament in 2015.</a>
                          Political parties have also increased the number of
-                         female candidates put up for election. In 2015,
-                         there were 35 female political candidates, while 2020
-                         saw 40 female candidates. Red Dot United, a new
-                         political party that had its first contest in GE2020,
-                         even had 40% of its candidates as women.
+                         female candidates put up for election.
+                         <a href = 'https://asia.nikkei.com/Politics/Singapore-election/Singapore-s-record-40-female-candidates-change-election-discussion'>
+                         In 2015, there were 35 female political 
+                         candidates, while 2020 saw 40 female candidates. </a>
                          </p>
-                         <p>However, the pace of change has been slower in the
-                         Cabinet. Despite a growing Cabinet, from 19 in the
-                         previous government to 20 after GE2020, Singapore
-                         remains with 3 female full cabinet Ministers -
-                         Josephine Teo, Grace Fu, and Indranee Rajah.
-                         Furthermore, it was also
+                         <p>Progress has also been made in Government, where the
+                         number of female political officeholders has grown to 9,
+                         up from 6 just after GE2015. Singapore also now has 3
+                         full cabinet ministers - Josephine Teo, Grace Fu, and
+                         Indranee Rajah,
                          <a href= 'https://www.womensaction.sg/article/politics'>
-                         only in 2009, that Singapore had its first female
-                         cabinet Minister, Lim Hwee Hua,
-                         </a>
-                         and less than 5 years ago,
-                         <a href = 'https://www.straitstimes.com/singapore/two-women-ministers-in-cabinet-for-first-time'>
-                         in 2017, that Singapore first had two female cabinet
-                         ministers.
+                         first gaining a  first female cabinet minister in 2009, 
+                         when Lim Hwee Hua was appointed Minister in the Prime 
+                         Minister's Office.
                          </a>
                          </p>
+                         <br>
                          "),
-                    #Insert Visualisation
-                    HTML("
+                    plotOutput("SG_Parl_Graph"),
+                    HTML("<h5><strong>Gender Representation in Politics Around 
+                         the World</strong></h5>
+                         <p>
+                         Singapore's growth in female Parliamentary representation
+                         has kept pace with global trends. 
+                         <a href = 'https://data.worldbank.org/indicator/SG.GEN.PARL.ZS'>
+                         Data from the World Bank </a>
+                         indicates that just as Singapore's share of women
+                         in Parliament has increased from 23% to 29% in the past
+                         decade, the OECD average (OECD members are largely 
+                         comprised of high-income developed countries), has 
+                         increased from 23% to 31%. 
+                         These trends are slightly ahead of the global average 
+                         and average across East Asian and Pacific countries,
+                         which has increased from 19% to 25% and 17 to 21% 
+                         respectively over the same period.
+                         </p>
+                         <br>"),
+                    plotOutput("sg_line_graph_comparison"),
+                    HTML("<br>
+                         <p>
+                         However, such benchmark comparisons are only part of
+                         the picture. Singapore continues to lag behind major 
+                         European nations such as France, Germany, and the UK. 
+                         Furthermore, although countries in the region such as
+                         Indonesia, South Korea, and Thailand lag behind 
+                         Singapore in female legislative representation, these 
+                         countries have all had female heads of government. 
+                         Despite having a female head of state, Singapore's 
+                         female political leaders have scarcely been discussed 
+                         as candidates for Prime Minister or Deputy Prime Minister.
+                         Women taking up key roles in government is also a 
+                         relatively recent development in Singapore. It has 
+                         only been 3 years since Singapore first had 2 women in
+                         Cabinet, and barely over a decade since its first female
+                         Cabinet minister.
+                         </p>
+                         <br>"),
+                    box(width = 12,
+                        title = NULL,
+                        HTML("<h2>Explore Female Representation Over the Years</h2>
+                            <p> Click on \"Interactive Tool\" in the sidebar for 
+                            an interactive experience to learn more about
+                            the trends in female political representation 
+                            in the region and the globe</p>")
+                        ),
+                    HTML("<h5><strong>Being a Woman in Politics in Singapore</strong></h5>
+                         <p>
+                         </p>
                          <br>
+                         <h5><strong>What more should be done?</strong></h5>
                          <br>
-                         <h5><strong>The Importance of Female Voices</strong></h5>
-                         <br>
+                         - Given the challenges,
+                         - GRCs
+                         - Mandating - bring up UAE
+                         - 
                          Growing female representation in Parliament has been
                          welcomed across the political spectrum. Opposition and
                          ruling party politicians have noted that women bring
@@ -470,7 +526,19 @@ body <- dashboardBody(
             tabName = "explore",
             fluidRow(
                 HTML("<style>.aligncenter {text-align: center;}</style>
-                     <h2><p class = 'aligncenter'>Explore Female Representation Over the Years</p></h2>"),
+                     <h1><p class = 'aligncenter'>Explore Female Representation Over the Years</p></h1>"),
+                box(width = 12,
+                    title = NULL,
+                    HTML("<h4>
+                         <ul>
+                            <li>Use the tools below to learn about the trends in female political representation and key women in politics around the world</li>
+                            </br>
+                            <li>Click on \"Main Story\" in the sidebar to read about women in Singapore Politics</li>
+                         </ul>
+                         </h4>")
+                    )
+            ),
+            fluidRow(
                 box(width = 10,
                     title = "Select a Year",
                     sliderInput(
@@ -492,6 +560,17 @@ body <- dashboardBody(
                     HTML("<br><br>"),
                     box(width = 4,
                         title = "Ranking of Female Legislative Representation by Country",
+                        sliderInput(
+                            inputId = "year_select_2",
+                            label = "Select a Year",
+                            min = 1997,
+                            max = 2020,
+                            value = 1997,
+                            step = 1,
+                            ticks = FALSE,
+                            width = "100%",
+                            round = TRUE,
+                            sep = ""),
                         DT::dataTableOutput("women_legis_table"),
                         HTML("<p style='font-size:10px;'>Data from the World Bank</p>")
                         ),
