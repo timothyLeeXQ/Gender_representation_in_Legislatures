@@ -534,26 +534,26 @@ body <- dashboardBody(
                          Much of this gain has been made in the most recent 
                          general election.
                          <a href = 'https://www.channelnewsasia.com/news/singapore/ge2020-record-number-women-parliament-mps-singapore-12940394'>
-                         In the 14th Parliament formed after GE2020, there are 
-                         27 female elected MPs, about 29% of seats, 
+                         In the 14th Parliament formed after GE2020, Singapore elected 
+                         27 female elected MPs, which is about 29% of seats. This is 
                          up from 23.5% (21 out of 89) in the previous session of
-                         Parliament in 2015.</a>
-                         Political parties have also increased the number of
-                         female candidates put up for election.
+                         Parliament in 2015.</a> This could be in part due to 
+                         political parties increaseing the number of
+                         female candidates they put up for election.
                          <a href = 'https://asia.nikkei.com/Politics/Singapore-election/Singapore-s-record-40-female-candidates-change-election-discussion'>
-                         In 2015, there were 35 female political 
+                         In 2015, political parties fielded 35 female 
                          candidates, while 2020 saw 40 female candidates. </a>
                          </p>
                          <p style = 'font-size: 16px;'>
-                         Progress has also been made in Government, where the
-                         number of female political officeholders has grown to 9,
-                         up from 6 just after GE2015. Singapore also now has 3
-                         full cabinet ministers - Josephine Teo, Grace Fu, and
-                         Indranee Rajah,
+                         Progress in female representation has also been made in 
+                         Government, where the number of female political 
+                         officeholders has grown to 9, up from 6 just after 
+                         GE2015. Singapore also now has 3 full cabinet ministers
+                         - Josephine Teo, Grace Fu, and Indranee Rajah - just over
                          <a href= 'https://www.womensaction.sg/article/politics'>
-                         first gaining a  first female cabinet minister in 2009, 
+                         a decade from when Singapore gained its first female cabinet minister
                          when Lim Hwee Hua was appointed Minister in the Prime 
-                         Minister's Office.
+                         Minister's Office in 2009.
                          </a>
                          </p>
                          <br>
@@ -566,25 +566,24 @@ body <- dashboardBody(
                          Singapore's growth in female Parliamentary representation
                          has kept pace with global trends. 
                          <a href = 'https://data.worldbank.org/indicator/SG.GEN.PARL.ZS'>
-                         Data from the World Bank </a>
-                         indicates that just as Singapore's share of women
-                         in Parliament has increased from 23% to 29% in the past
-                         decade, the OECD average (OECD members are largely 
-                         comprised of high-income developed countries), has 
-                         increased from 23% to 31%. 
-                         These trends are slightly ahead of the global average 
+                         Data from the World Bank</a> indicates that the average
+                         female legislative representation among members of the
+                         Organisation of Economic Co-peration and Development, 
+                         a group of mostly high income, developed countries, has
+                         incresaed from 23% to 31% in the past decade. This is 
+                         similar to the 23% to 29% increase seen in the Singapore
+                         Parliament over the same time period.
+                         This growth is slightly ahead of the global average 
                          and average across East Asian and Pacific countries,
-                         which has increased from 19% to 25% and 17 to 21% 
+                         which has increased from 19% to 25% and 17% to 21% 
                          respectively over the same period.
                          </p>
                          <br>"),
                     plotOutput("sg_line_graph_comparison"),
                     HTML("<br>
                          <p style = 'font-size: 16px;'>
-                         However, such benchmark comparisons are only part of
-                         the picture. Singapore continues to lag behind major 
-                         European nations such as France, Germany, and the UK. 
-                         Furthermore, although countries in the region such as
+                         However, such benchmark comparisons remain only part of
+                         the full picture. Although countries in the region such as
                          Indonesia, South Korea, and Thailand lag behind 
                          Singapore in female legislative representation, these 
                          countries have all had female heads of government. 
@@ -655,7 +654,7 @@ body <- dashboardBody(
                          </a>
                          </p>
                          <p style = 'font-size: 16px;'>
-                         A related concern is the political culture of the 
+                         Another related concern is the political culture of the 
                          country. In Singapore, female politicians have often 
                          had to deal with gender-based perceptions. Nicole Seah, 
                          now a Workers Party politician, was mocked for tearing 
@@ -699,7 +698,7 @@ body <- dashboardBody(
                          <a href = 'https://www.channelnewsasia.com/news/singapore/ge2020-record-number-women-parliament-mps-singapore-12940394'>
                          Ms Hazel Poa, a non-constituency MP from the newly
                          formed Progress Singapore Party, told CNA that the
-                         increease in female representation is a \"good
+                         increase in female representation is a \"good
                          development\", highlighting issues such as domestic
                          abuse, family-friendly workplace policies, and
                          recognition for caregivers. Ms Carrie Tan, a PAP MP for
@@ -741,16 +740,15 @@ body <- dashboardBody(
                          only permit candidates from that racial gorup.
                          </p>
                          <p style = 'font-size: 16px;'>
-                         With this precedent, it is possible that similar 
-                         measures may be deployed to ensure greater female political 
+                         With this precedent, it is possible to deploy similar 
+                         measures to ensure greater female political 
                          representation. For instance, the GRC system could 
                          mandate at least one female candidate in each
-                         GRC. While most GRC teams already include women, this
-                         will guarantee female representation in Parliament from
-                         the constituency, regardless of which political party
-                         wins the election, without being too disruptive to the
-                         political process. Increasing this requirement to two
-                         females per GRC will further increase the number of 
+                         GRC. While most GRC teams already include women, such a 
+                         mandate could guarantee female representation in Parliament 
+                         regardless of which political party wins the constituency.
+                         Raising this requirement to two women
+                         per GRC will further increase the number of 
                          female parliamentarians. With 17 GRCs in 2020, requiring
                          two female candidates per GRC would guarantee 
                          34 female elected MPs in Parliament, already 
@@ -759,7 +757,7 @@ body <- dashboardBody(
                          <p style = 'font-size: 16px;'>
                          Other political mechanisms such as the non-constituency
                          MP (NCMP) system and nominated MP (NMP) system could 
-                         also be used to bring female representation into 
+                         also be used to bring more female representation into 
                          Parliament. In the 13th Parliament just before GE2020, 
                          already 5 out of 9 NMPs were female. Fixing such a
                          proportion as a benchmark for future NMP or NCMP 
