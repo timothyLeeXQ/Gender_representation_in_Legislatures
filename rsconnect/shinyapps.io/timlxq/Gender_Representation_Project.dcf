@@ -5,9 +5,9 @@ account: timlxq
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3356404
-bundleId: 3946986
+bundleId: 3950884
 url: https://timlxq.shinyapps.io/Gender_Representation_Project/
-when: 1607164693.39259
+when: 1607272666.16257
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: .gitattributes|API_SG.GEN.PARL.ZS_DS2_en_csv_v2_1740381.csv|pilot.Rmd|README.md|SG_Parl_women.csv|Women Politicians.csv

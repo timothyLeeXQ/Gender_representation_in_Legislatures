@@ -136,6 +136,7 @@ shinyServer(function(input, output, session) {
     
     output$countries_line_graph <- renderPlot({
       selected_countries <- paste0(input$country_select_2, collapse = "|")
+      the_nrow <- ceiling(length(input$country_select_2)/3)
       
       countries_line_graph <- countries_data %>%
         filter(str_detect(.data$`Country Code`, pattern = regex(selected_countries))) %>%
@@ -154,15 +155,20 @@ shinyServer(function(input, output, session) {
         annotate("text", x = 1997, y = 53, label = "Parity", hjust = 0) +
         annotate("text", x = 1997, y = 33, label = "UN 30% Guideline", hjust = 0) +
         labs(x = "\nYear",
-             y = "Proportion of Women in the Legislature\n",
-             col = "Country",
+             y = "Proportion of Women\nin the Legislature\n",
+             col = "Country/Region",
              caption = "Note: Breaks in lines indicate missing data") +
         theme_minimal() +
         theme(axis.title.x = element_text(size = 14, family = "Arial"),
               axis.title.y = element_text(size = 14, family = "Arial"),
               axis.text = element_text(size = 12, family = "Arial"),
               axis.text.x = element_text(angle = 45, hjust = 1),
-              legend.text = element_text(size = 12))
+              legend.title = element_blank(),
+              legend.key.size = unit(0.3, "cm"),
+              legend.text = element_text(size = 10.5),
+              legend.position = "bottom",
+              legend.box = "vertical") +
+      guides(color = guide_legend(nrow = the_nrow, byrow = TRUE))
       
       countries_line_graph
     })
@@ -179,17 +185,22 @@ shinyServer(function(input, output, session) {
         geom_hline(yintercept = 0.3, linetype = "dashed", size = 1) +
         annotate("text", x = 2009, y = .53, label = "Parity", hjust = 0) +
         annotate("text", x = 2009, y = .33, label = "UN 30% Guideline", hjust = 0) +
-        labs(title = "Female Representation in Political Offices in Singapore",
+        labs(title = "Female Representation in\nPolitical Offices in Singapore",
              x = "\nYear",
              y = "Proportion of Women\n",
              col = "% Females as...",
-             caption = "Data from the World Bank, Parliament.gov.sg, WIKIPEDIA") +
+             caption = "Data from the World Bank,\nParliament.gov.sg, WIKIPEDIA") +
         theme_minimal() +
-        theme(axis.title.x = element_text(size = 14, family = "TT Arial"),
-              axis.title.y = element_text(size = 14, family = "TT Arial"),
-              axis.text = element_text(size = 12, family = "TT Arial"),
+        theme(axis.title.x = element_text(size = 14, family = "Arial"),
+              axis.title.y = element_text(size = 14, family = "Arial"),
+              axis.text = element_text(size = 12, family = "Arial"),
               axis.text.x = element_text(angle = 45, hjust = 1),
-              legend.text = element_text(size = 12))
+              legend.title = element_blank(),
+              legend.text = element_text(size = 11),
+              legend.position = "bottom"
+        )  + 
+        guides(color = guide_legend(nrow = 2,byrow = TRUE))
+        
       
     })
     
@@ -213,17 +224,21 @@ shinyServer(function(input, output, session) {
         geom_hline(yintercept = 30, linetype = "dashed", size = 1) +
         annotate("text", x = 2010, y = 53, label = "Parity", hjust = 0) +
         annotate("text", x = 2010, y = 33, label = "UN 30% Guideline", hjust = 0) +
-        labs(title = "Female Legislative Representation in Singapore and Global and Regional benchmarks",
+        labs(title = "Female Legislative Representation in\nSingapore and Global benchmarks",
              x = "\nYear",
              y = "Proportion of Women in the Legislature\n",
-             col = "Country",
-             caption = "Note: Breaks in lines indicate missing data") +
+             col = "Country/Region",
+             caption = "Data from the World Bank") +
         theme_minimal() +
         theme(axis.title.x = element_text(size = 14, family = "Arial"),
               axis.title.y = element_text(size = 14, family = "Arial"),
               axis.text = element_text(size = 12, family = "Arial"),
               axis.text.x = element_text(angle = 45, hjust = 1),
-              legend.text = element_text(size = 12))
+              legend.title = element_blank(),
+              legend.text = element_text(size = 11),
+              legend.position = "bottom"
+              )  + 
+        guides(color = guide_legend(nrow = 2,byrow = TRUE))
       
       sg_line_graph_comparison
     })
